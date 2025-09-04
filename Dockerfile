@@ -1,10 +1,12 @@
-FROM nikolaik/python-nodejs:python3.10-nodejs19
+FROM ubuntu:22.04
 
+# Install python, node, ffmpeg, curl, wget
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+       python3 python3-pip \
+       nodejs npm \
        ffmpeg \
-       wget \
-       curl \
+       curl wget \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
