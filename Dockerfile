@@ -1,12 +1,15 @@
 FROM nikolaik/python-nodejs:python3.10-nodejs19
 
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends ffmpeg \
-    && apt-get clean \
+    && apt-get install -y --no-install-recommends \
+       ffmpeg \
+       wget \
+       curl \
     && rm -rf /var/lib/apt/lists/*
 
-COPY . /app/
-WORKDIR /app/
+WORKDIR /app
+COPY . .
+
 RUN pip3 install --no-cache-dir -U -r requirements.txt
 
-CMD bash start
+CMD ["bash", "start"]
